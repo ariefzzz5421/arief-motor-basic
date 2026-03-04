@@ -8,11 +8,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="topbar">Detail unit interaktif • <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer">Tanya unit ini via WhatsApp</a></div>
+
     <nav class="nav">
       <a class="brand" href="index.html">ARIEF <span>MOTOR</span></a>
+      <button class="menu-toggle" type="button" aria-label="Buka menu">☰</button>
       <div class="menu">
         <a href="index.html">Home</a>
         <a href="stok.html" class="active">Stok</a>
+        <a href="index.html#kontak">Kontak</a>
       </div>
     </nav>
 
@@ -22,7 +26,14 @@
     <div class="price">Rp 8.500.000</div>
 
     <div class="detail">
-      <div class="photo">Foto utama (nanti ganti gambar)</div>
+      <div>
+        <div class="photo" id="mainPhoto">Foto utama (nanti ganti gambar)</div>
+        <div class="thumb-list">
+          <button class="thumb-btn active" data-photo="Foto samping kiri">Samping kiri</button>
+          <button class="thumb-btn" data-photo="Foto samping kanan">Samping kanan</button>
+          <button class="thumb-btn" data-photo="Foto speedometer">Speedometer</button>
+        </div>
+      </div>
 
       <div class="spec">
         <div><b>Tahun:</b> 2017</div>
@@ -38,16 +49,36 @@
 
         <div class="actions">
           <a class="btn wa" target="_blank" rel="noreferrer"
-             href="https://wa.me/6281234567890?text=Halo%20ARIEF%20MOTOR%2C%20saya%20minat%20Honda%20Beat%202017%20harga%20Rp%208.500.000.%20Apakah%20masih%20ready%3F%20Bisa%20lihat%20unit%20di%20lokasi%3F">
+             href="https://wa.me/6281234567890?text=Halo%20ARIEF%20MOTOR%2C%20saya%20minat%20Honda%20Beat%202017%20harga%20Rp%208.500.000.%20Apakah%20masih%20ready%3F">
             Chat WhatsApp
           </a>
-
-          <a class="btn" target="_blank" rel="noreferrer"
-             href="https://maps.google.com/?q=ARIEF+MOTOR+Kediri">
-            Lihat Lokasi
-          </a>
+          <a class="btn" target="_blank" rel="noreferrer" href="https://maps.google.com/?q=ARIEF+MOTOR+Kediri">Lihat Lokasi</a>
         </div>
       </div>
     </div>
+
+    <a class="floating-wa" target="_blank" rel="noreferrer" href="https://wa.me/6281234567890?text=Halo%20ARIEF%20MOTOR%2C%20saya%20mau%20cek%20Honda%20Beat%202017.">💬 WhatsApp</a>
+
+    <footer class="footer">© ARIEF MOTOR • Unit siap cek lokasi</footer>
+
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.menu');
+      if (menuToggle && menu) {
+        menuToggle.addEventListener('click', () => {
+          menu.classList.toggle('open');
+        });
+      }
+
+      const photo = document.getElementById('mainPhoto');
+      const thumbButtons = document.querySelectorAll('.thumb-btn');
+      thumbButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          thumbButtons.forEach((btn) => btn.classList.remove('active'));
+          button.classList.add('active');
+          photo.textContent = button.dataset.photo;
+        });
+      });
+    </script>
   </body>
 </html>
