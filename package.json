@@ -1,0 +1,11 @@
+{
+  "name": "chess-3d-electron",
+  "version": "1.0.0",
+  "description": "3D chess game running in Electron",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test"
+  }
+}
