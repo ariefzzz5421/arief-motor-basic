@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Chess Electron</title>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at top, #1f2937, #030712);
+        font-family: Arial, sans-serif;
+      }
+      .wrapper { perspective: 1000px; }
+      .board {
+        width: 520px;
+        height: 520px;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        border: 14px solid #4b5563;
+        transform: rotateX(58deg) rotateZ(45deg);
+        transform-style: preserve-3d;
+        box-shadow: 0 40px 50px rgba(0, 0, 0, 0.55);
+      }
+      .square {
+        position: relative;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(15, 23, 42, 0.25);
+        cursor: pointer;
+      }
+      .light { background: #f3f4f6; }
+      .dark { background: #6b7280; }
+      .piece {
+        width: 50%;
+        height: 50%;
+        border-radius: 50%;
+        transform: translateZ(18px);
+        box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.3);
+      }
+      .w { background: #fde68a; }
+      .b { background: #111827; }
+      .selected { outline: 4px solid #10b981; }
+      .target::after {
+        content: '';
+        width: 22%;
+        height: 22%;
+        border-radius: 50%;
+        background: rgba(96, 165, 250, 0.85);
+        position: absolute;
+      }
+      .hint {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(17, 24, 39, 0.85);
+        padding: 0.7rem 0.9rem;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hint">3D Chess: click a piece, then a destination square.</div>
+    <div class="wrapper">
+      <div class="board" id="board"></div>
+    </div>
+    <script type="module" src="./renderer.js"></script>
+  </body>
+</html>
