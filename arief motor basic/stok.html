@@ -7,35 +7,77 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="topbar">Stok update harian • <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer">Minta rekomendasi unit sekarang</a></div>
+
     <nav class="nav">
       <a class="brand" href="index.html">ARIEF <span>MOTOR</span></a>
+      <button class="menu-toggle" type="button" aria-label="Buka menu">☰</button>
       <div class="menu">
         <a href="index.html">Home</a>
         <a href="stok.html" class="active">Stok</a>
+        <a href="index.html#kontak">Kontak</a>
       </div>
     </nav>
 
-    <h1>Stok Motor</h1>
-    <p>Klik unit untuk lihat detail dan chat WhatsApp.</p>
+    <header class="section-head">
+      <h1>Stok Motor Tersedia</h1>
+      <p>Pilih filter agar pencarian motor lebih cepat.</p>
+    </header>
 
-    <div class="grid">
-      <a class="card" href="motor-beat-2017.html">
-        <div class="thumb">Foto</div>
+    <div class="filter-chips" role="tablist" aria-label="Filter tipe motor">
+      <button class="chip active" data-filter="all" type="button">Semua</button>
+      <button class="chip" data-filter="matic" type="button">Matic</button>
+      <button class="chip" data-filter="bebek" type="button">Bebek</button>
+    </div>
+
+    <div class="grid" id="stokGrid">
+      <a class="card" data-type="matic" href="motor-beat-2017.html">
+        <div class="thumb">Foto Beat</div>
         <div class="card-title">Honda Beat 2017</div>
         <div class="muted">Rp 8.500.000 • 42.000 km • Kediri</div>
       </a>
 
-      <a class="card" href="motor-vario-2019.html">
-        <div class="thumb">Foto</div>
+      <a class="card" data-type="matic" href="motor-vario-2019.html">
+        <div class="thumb">Foto Vario</div>
         <div class="card-title">Honda Vario 125 2019</div>
         <div class="muted">Rp 14.500.000 • 31.000 km • Kediri</div>
       </a>
 
-      <a class="card" href="motor-supra-2016.html">
-        <div class="thumb">Foto</div>
+      <a class="card" data-type="bebek" href="motor-supra-2016.html">
+        <div class="thumb">Foto Supra</div>
         <div class="card-title">Honda Supra X 125 2016</div>
         <div class="muted">Rp 7.800.000 • 55.000 km • Kediri</div>
       </a>
     </div>
+
+    <a class="floating-wa" target="_blank" rel="noreferrer" href="https://wa.me/6281234567890?text=Halo%20ARIEF%20MOTOR%2C%20saya%20mau%20minta%20rekomendasi%20motor.">💬 WhatsApp</a>
+
+    <footer class="footer">© ARIEF MOTOR • Klik unit untuk lihat detail lengkap</footer>
+
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.menu');
+      if (menuToggle && menu) {
+        menuToggle.addEventListener('click', () => {
+          menu.classList.toggle('open');
+        });
+      }
+
+      const chips = document.querySelectorAll('.chip');
+      const cards = document.querySelectorAll('#stokGrid .card');
+
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          chips.forEach((c) => c.classList.remove('active'));
+          chip.classList.add('active');
+
+          const filter = chip.dataset.filter;
+          cards.forEach((card) => {
+            const show = filter === 'all' || card.dataset.type === filter;
+            card.style.display = show ? 'block' : 'none';
+          });
+        });
+      });
+    </script>
   </body>
 </html>
